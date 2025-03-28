@@ -72,20 +72,6 @@ function applySorting(rooms: any[], sort?: string, order?: "asc" | "desc") {
 export function getAPI(opts: Partial<MonitorOptions>) {
   const api = express.Router();
 
-  // Optional rate limiting middleware
-  if (opts.api?.rateLimiting?.enabled) {
-    // This would be implemented with express-rate-limit or similar
-    console.log("Rate limiting enabled with", opts.api.rateLimiting);
-    // We would add the middleware here
-  }
-
-  // Optional CORS middleware
-  if (opts.api?.cors?.enabled) {
-    // This would be implemented with cors package
-    console.log("CORS enabled with", opts.api.cors);
-    // We would add the middleware here
-  }
-
   // Get room list with filtering and sorting
   api.get("/", async (req: express.Request, res: express.Response) => {
     try {

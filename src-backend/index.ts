@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 
 // required for ESM support. (esbuild uses it)
-import { fileURLToPath } from "url";
 
 import { getAPI } from "./api.js";
 import "./ext/Room.js";
@@ -85,13 +84,6 @@ export interface FilterOptions {
   customFilter?: string; // Function name to be called
 }
 
-// Authentication options
-export interface AuthOptions {
-  strategy?: "none" | "basic" | "jwt" | "custom";
-  options?: any;
-  handler?: string; // Middleware function name
-}
-
 export interface MonitorOptions {
   // Original option
   columns?: Array<ColumnType>;
@@ -119,23 +111,7 @@ export interface MonitorOptions {
   // API configuration
   api?: {
     prefix?: string;
-    rateLimiting?: {
-      enabled: boolean;
-      maxRequests: number;
-      windowMs: number;
-    };
-    cors?: {
-      enabled: boolean;
-      origin: string[] | string;
-    };
-    caching?: {
-      enabled: boolean;
-      duration: number;
-    };
   };
-
-  // Authentication
-  auth?: AuthOptions;
 
   // Real-time updates
   realtime?: {
@@ -149,9 +125,6 @@ export interface MonitorOptions {
       serverMetrics?: boolean;
     };
   };
-
-  // Backend URL (can be different from the frontend URL)
-  backendUrl?: string;
 }
 
 /**
